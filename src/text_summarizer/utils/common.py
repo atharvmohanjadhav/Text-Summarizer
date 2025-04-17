@@ -26,5 +26,3 @@ def create_dir(path_to_dir: list, verbose=True):
         os.makedirs(path ,exist_ok= True)
         if verbose:
             logger.info(f"created dir at {path}")
-
-    
