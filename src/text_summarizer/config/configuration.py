@@ -1,6 +1,6 @@
 from src.text_summarizer.constants import *
 from src.text_summarizer.utils.common import read_yaml, create_dir
-from src.text_summarizer.entity import DataIngestionConfig
+from src.text_summarizer.entity import DataIngestionConfig,DataTransformationConfig
 from src.text_summarizer.exception.exception import SummaryException
 import sys
 
@@ -23,5 +23,20 @@ class ConfigurationManager:
                 unzip_dir=config.unzip_dir
             )
             return data_ingestion_config
+        except Exception as e:
+            raise SummaryException(e,sys)
+        
+    def get_data_transformation_config(self)->DataTransformationConfig:
+        try:
+            config = self.config.data_transformation
+
+            create_dir([config.root_dir])
+
+            data_transformation_config = DataTransformationConfig(
+                root_dir=config.root_dir,
+                data_path=config.data_path,
+                tokenizer_name= config.tokenizer_name
+            )
+            return data_transformation_config
         except Exception as e:
             raise SummaryException(e,sys)
