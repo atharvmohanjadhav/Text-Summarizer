@@ -3,6 +3,7 @@ import zipfile
 from urllib import request
 from src.text_summarizer.logging_info import logger
 from src.text_summarizer.config.configuration import DataIngestionConfig
+import shutil
 
 class DataIngestion:
     def __init__(self,config:DataIngestionConfig):
