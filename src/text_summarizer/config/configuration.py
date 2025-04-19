@@ -1,6 +1,6 @@
 from src.text_summarizer.constants import *
 from src.text_summarizer.utils.common import read_yaml, create_dir
-from src.text_summarizer.entity import DataIngestionConfig,DataTransformationConfig,ModelTrainingConfig
+from src.text_summarizer.entity import DataIngestionConfig,DataTransformationConfig,ModelTrainingConfig,ModelEvalConfig
 from src.text_summarizer.exception.exception import SummaryException
 import sys
 
@@ -66,3 +66,22 @@ class ConfigurationManager:
             return model_trainer_config
         except Exception as e:
             raise SummaryException(e,sys)
+    
+    def get_model_eval_config(self)-> ModelEvalConfig:
+        try:
+            config = self.config.model_eval
+
+            create_dir([config.root_dir])
+
+            model_eval_config = ModelEvalConfig(
+                root_dir=config.root_dir,
+                data_path=config.data_path,
+                model_path=config.model_path,
+                tokenizer_path=config.tokenizer_path,
+                metric_file_path=config.metric_file_path
+            )
+            return model_eval_config
+        except Exception as e:
+            raise SummaryException(e,sys)
+        
+    

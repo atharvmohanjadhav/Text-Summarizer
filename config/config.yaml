@@ -16,3 +16,9 @@ model_trainer:
   data_path: artifacts/data_transformation/samsung_dataset
   model_ckpt: google/pegasus-cnn_dailymail
   
+model_eval:
+  root_dir: artifacts/model_eval
+  data_path: artifacts/data_transformation/samsung_dataset
+  model_path: artifacts/model_trainier/pegasus-samsung-model
+  tokenizer_path: artifacts/model_trainier/tokenizer
+  metric_file_path: artifacts/model_eval/metrics.csv
